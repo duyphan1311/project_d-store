@@ -6,5 +6,6 @@ router.use('/role', require('./roleRoute'))
 router.use('/employee', require('./employeeRoute'))
 router.use('/category', require('./categoryRoute'))
 router.use('/supplier', require('./supplierRoute'))
+router.use('/cart', require('./cartRoute'))
 
 module.exports = router

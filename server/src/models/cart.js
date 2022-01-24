@@ -7,6 +7,11 @@ const cartSchema = mongoose.Schema({
         type: Array,
         required: true
     },
+    discount: {
+        type: Schema.Types.ObjectId,
+        ref: 'Discount',
+        required: true
+    },
     customer: {
         type: Schema.Types.ObjectId,
         ref: 'Customer',
