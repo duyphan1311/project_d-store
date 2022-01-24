@@ -7,15 +7,11 @@ const commentSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    senderID: {
+    user: {
         type: Schema.Types.ObjectId,
-        required: true
+        required: true,
     },
-    receiverID: {
-        type: Schema.Types.ObjectId,
-        required: true
-    },
-    preID: {
+    prevID: {
         type: Schema.Types.ObjectId,
         required: true,
         default: null

@@ -5,5 +5,6 @@ module.exports = {
     employeeController: require('./employeeController'),
     categoryController: require('./categoryController'),
     supplierController: require('./supplierController'),
-    cartController: require('./cartController')
+    cartController: require('./cartController'),
+    commentController: require('./commentController'),
 }
