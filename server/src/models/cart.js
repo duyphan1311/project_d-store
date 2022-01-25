@@ -3,7 +3,7 @@ const { schemaOptions } = require('./modelOptions')
 const Schema = mongoose.Schema
 
 const cartSchema = mongoose.Schema({
-    product: {
+    products: {
         type: Array,
         required: true
     },

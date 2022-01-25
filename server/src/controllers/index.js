@@ -7,4 +7,5 @@ module.exports = {
     supplierController: require('./supplierController'),
     cartController: require('./cartController'),
     commentController: require('./commentController'),
+    discountController: require('./discountController')
 }

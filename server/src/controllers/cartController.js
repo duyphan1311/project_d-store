@@ -2,13 +2,13 @@ const { Cart } = require('../models')
 
 exports.create = async (req, res) => {
     const {
-        product,
+        products,
         discount,
         customer
     } = req.body
     try {
         const newCart = await new Cart({
-            product: product,
+            products: products,
             discount: discount,
             customer: customer
         })

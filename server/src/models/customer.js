@@ -25,7 +25,7 @@ const customerSchema = mongoose.Schema({
         type: String,
         default: null,
     },
-    address: {
+    addresses: {
         type: Array,
         default: null,
     },

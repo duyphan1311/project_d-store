@@ -8,7 +8,7 @@ const orderDetailsSchema = mongoose.Schema({
         ref: 'Discount',
         required: true
     },
-    product: {
+    products: {
         type: Array,
         required: true
     },
