@@ -10,5 +10,6 @@ router.use('/cart', require('./cartRoute'))
 router.use('/comment', require('./commentRoute'))
 router.use('/discount', require('./discountRoute'))
 router.use('/order', require('./orderRoute'))
+router.use('/receive-note', require('./receiveNoteRoute'))
 
 module.exports = router

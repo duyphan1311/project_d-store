@@ -9,4 +9,6 @@ module.exports = {
     commentController: require('./commentController'),
     discountController: require('./discountController'),
     orderController: require('./orderController'),
+    receiveNoteController: require('./receiveNoteController'),
+
 }
