@@ -16,11 +16,11 @@ router.delete('/:id',
     discountController.delete
 )
 router.get('/',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyToken,
     discountController.getAll
 )
-router.get('/:id',
-    tokenHandler.verifyManegerToken,
+router.get('/:voucher',
+    tokenHandler.verifyToken,
     discountController.getOne
 )
 

@@ -4,15 +4,15 @@ const tokenHandler = require('../handlers/tokenHandler')
 const { orderController } = require('../controllers')
 
 router.post('/',
-    tokenHandler.verifyEmployeeToken,
+    tokenHandler.verifyToken,
     orderController.create
 )
 router.put('/:id',
-    tokenHandler.verifyEmployeeToken,
+    tokenHandler.verifyToken,
     orderController.update
 )
 router.delete('/:id',
-    tokenHandler.verifyEmployeeToken,
+    tokenHandler.verifyToken,
     orderController.delete
 )
 router.get('/',
@@ -20,7 +20,7 @@ router.get('/',
     orderController.getAll
 )
 router.get('/:id',
-    tokenHandler.verifyEmployeeToken,
+    tokenHandler.verifyToken,
     orderController.getOne
 )
 

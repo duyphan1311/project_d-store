@@ -4,23 +4,23 @@ const { categoryController } = require('../controllers')
 const tokenHandler = require('../handlers/tokenHandler')
 
 router.post('/',
-    tokenHandler.verifyAdminToken,
+    tokenHandler.verifyManegerToken,
     categoryController.create
 )
 router.put('/:id',
-    tokenHandler.verifyAdminToken,
+    tokenHandler.verifyManegerToken,
     categoryController.update
 )
 router.delete('/:id',
-    tokenHandler.verifyAdminToken,
+    tokenHandler.verifyManegerToken,
     categoryController.delete
 )
 router.get('/',
-    tokenHandler.verifyAdminToken,
+    tokenHandler.verifyToken,
     categoryController.getAll
 )
 router.get('/:id',
-    tokenHandler.verifyAdminToken,
+    tokenHandler.verifyToken,
     categoryController.getOne
 )
 

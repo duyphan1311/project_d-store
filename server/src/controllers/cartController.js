@@ -48,7 +48,7 @@ exports.delete = async (req, res) => {
     }
 }
 
-exports.getCart = async (req, res) => {
+exports.getOne = async (req, res) => {
     try {
         const cart = await Cart.findById(req.params.id)
         res.status(200).json(cart)

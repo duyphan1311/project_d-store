@@ -65,7 +65,7 @@ exports.getAll = async (req, res) => {
 
 exports.getOne = async (req, res) => {
     try {
-        const discount = await Discount.findById(req.params.id)
+        const discount = await Discount.findOne({ voucher: req.params.voucher })
         res.status(200).json(discount)
     } catch (error) {
         console.log(error)

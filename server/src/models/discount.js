@@ -5,7 +5,8 @@ const Schema = mongoose.Schema
 const discountSchema = mongoose.Schema({
     voucher: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     discount: {
         type: Number,

@@ -12,12 +12,12 @@ router.put('/:id',
     cartController.update
 )
 router.delete('/:id',
-    // tokenHandler.verifyAdminToken,
+    tokenHandler.verifyToken,
     cartController.delete
 )
 router.get('/:id',
-    // tokenHandler.verifyAdminToken,
-    cartController.getCart
+    tokenHandler.verifyToken,
+    cartController.getOne
 )
 
 module.exports = router
