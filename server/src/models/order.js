@@ -11,6 +11,10 @@ const orderSchema = mongoose.Schema({
         type: Date,
         required: true
     },
+    completeDate: {
+        type: Date,
+        default: null
+    },
     status: {
         type: String,
         required: true

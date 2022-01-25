@@ -6,7 +6,6 @@ module.exports = {
     Category: require('./category'),
     Role: require('./role'),
     Order: require('./order'),
-    CompleteOrder: require('./completeOrder'),
     OrderDetails: require('./orderDetails'),
     ReceiveNote: require('./receiveNote'),
     Cart: require('./cart'),
