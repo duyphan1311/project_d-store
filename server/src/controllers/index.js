@@ -10,5 +10,5 @@ module.exports = {
     discountController: require('./discountController'),
     orderController: require('./orderController'),
     receiveNoteController: require('./receiveNoteController'),
-
+    orderDetailsController: require('./orderDetailsController'),
 }
