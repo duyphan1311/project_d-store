@@ -46,7 +46,7 @@ const employeeSchema = new mongoose.Schema({
     },
     role: {
         type: Schema.Types.ObjectId,
-        ref: 'RoleAccess',
+        ref: 'Role',
         required: true
     }
 }, schemaOptions)
