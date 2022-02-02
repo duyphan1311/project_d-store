@@ -11,10 +11,6 @@ const orderDetailsSchema = mongoose.Schema({
     products: {
         type: Array,
         required: true
-    },
-    order: {
-        type: Schema.Types.ObjectId,
-        required: true
     }
 }, schemaOptions)
 

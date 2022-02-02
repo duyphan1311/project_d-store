@@ -17,9 +17,9 @@ exports.create = async (req, res) => {
         res.status(200).json({
             newReceiveNote
         })
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -32,9 +32,9 @@ exports.update = async (req, res) => {
             }
         )
         res.status(200).json(updateReceiveNote)
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -43,15 +43,15 @@ exports.delete = async (req, res) => {
         const { id } = req.params
         await ReceiveNote.findByIdAndDelete(id);
         res.status(200).json('Deleted');
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
     }
 }
 
 exports.getAll = async (req, res) => {
     try {
-        const list = await ReceiveNote.find({}).sort('-createAt')
+        const list = await ReceiveNote.find({}).sort('-createAt').populate('employee')
         res.status(200).json(list)
     } catch (error) {
         console.log(error)
@@ -61,7 +61,7 @@ exports.getAll = async (req, res) => {
 
 exports.getOne = async (req, res) => {
     try {
-        const receiveNote = await ReceiveNote.findById(req.params.id)
+        const receiveNote = await ReceiveNote.findById(req.params.id).populate('employee')
         res.status(200).json(receiveNote)
     } catch (error) {
         console.log(error)

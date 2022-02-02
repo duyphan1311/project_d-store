@@ -19,9 +19,9 @@ exports.create = async (req, res) => {
         res.status(200).json({
             newDiscount
         })
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -34,9 +34,9 @@ exports.update = async (req, res) => {
             }
         )
         res.status(200).json(updateDiscount)
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -47,9 +47,9 @@ exports.delete = async (req, res) => {
         await OrderDetails.updateMany({ discount: id }, { discount: null })
         await Discount.findByIdAndDelete(id);
         res.status(200).json('Deleted');
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
     }
 }
 

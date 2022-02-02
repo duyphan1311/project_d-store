@@ -23,6 +23,11 @@ const orderSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    details: {
+        type: Schema.Types.ObjectId,
+        ref: 'OrderDetails',
+        required: true
+    },
     customer: {
         type: Schema.Types.ObjectId,
         ref: 'Customer',

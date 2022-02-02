@@ -25,8 +25,8 @@ exports.create = async (req, res) => {
         res.status(200).json({
             newEmployee
         })
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }

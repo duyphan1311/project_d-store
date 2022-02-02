@@ -16,9 +16,9 @@ exports.create = async (req, res) => {
         res.status(200).json({
             newCart
         })
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -31,9 +31,9 @@ exports.update = async (req, res) => {
             }
         )
         res.status(200).json(updateCart)
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -42,15 +42,15 @@ exports.delete = async (req, res) => {
         const { id } = req.params
         await Cart.findByIdAndDelete(id);
         res.status(200).json('Deleted');
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
     }
 }
 
 exports.getOne = async (req, res) => {
     try {
-        const cart = await Cart.findById(req.params.id)
+        const cart = await Cart.findById(req.params.id).populate('discount')
         res.status(200).json(cart)
     } catch (error) {
         console.log(error)

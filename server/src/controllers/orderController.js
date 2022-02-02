@@ -7,6 +7,7 @@ exports.create = async (req, res) => {
         shipDate,
         status,
         address,
+        details,
         customer,
         employee
     } = req.body
@@ -16,6 +17,7 @@ exports.create = async (req, res) => {
             shipDate: moment(shipDate, "DD/MM/YYYY").toDate(),
             status: status,
             address: address,
+            details: details,
             customer: customer,
             employee: employee
         })
@@ -23,9 +25,9 @@ exports.create = async (req, res) => {
         res.status(200).json({
             newOrder
         })
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -38,9 +40,9 @@ exports.update = async (req, res) => {
             }
         )
         res.status(200).json(updateOrder)
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -50,15 +52,15 @@ exports.delete = async (req, res) => {
         await OrderDetails.deleteOne()({ order: id })
         await Order.findByIdAndDelete(id);
         res.status(200).json('Deleted');
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
     }
 }
 
 exports.getAll = async (req, res) => {
     try {
-        const list = await Order.find({}).sort('-createAt')
+        const list = await Order.find({}).sort('-createAt').populate({ path: 'details', populate: { path: 'discount' } }, { path: 'customer' }, { path: 'employee' })
         res.status(200).json(list)
     } catch (error) {
         console.log(error)
@@ -68,7 +70,7 @@ exports.getAll = async (req, res) => {
 
 exports.getOne = async (req, res) => {
     try {
-        const order = await Order.findById(req.params.id)
+        const order = await Order.findById(req.params.id).populate({ path: 'details', populate: { path: 'discount' } }, { path: 'customer' }, { path: 'employee' })
         res.status(200).json(order)
     } catch (error) {
         console.log(error)

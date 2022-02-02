@@ -11,7 +11,7 @@ const tokenDecode = (req) => {
                 process.env.TOKEN_SECRET_KEY
             );
             return tokenDecoded;
-        } catch (err) {
+        } catch (error) {
             return false;
         }
     } else {

@@ -1,18 +1,28 @@
-const { Category, Product } = require('../models')
+const { Product } = require('../models')
 
 exports.create = async (req, res) => {
     const {
         name,
-        image
+        quantity,
+        price,
+        description,
+        images,
+        supplier,
+        category
     } = req.body
     try {
-        const newCategory = await new Category({
+        const newProduct = await new Product({
             name: name,
-            image: image
+            quantity: quantity,
+            price: price,
+            description: description,
+            images: images,
+            supplier: supplier,
+            category: category
         })
-        await newCategory.save();
+        await newProduct.save();
         res.status(200).json({
-            newCategory
+            newProduct
         })
     } catch (error) {
         console.log(error)
@@ -22,13 +32,13 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        const updateCategory = await Category.findByIdAndUpdate(
+        const updateProduct = await Product.findByIdAndUpdate(
             req.params.id,
             {
                 $set: req.body
             }
         )
-        res.status(200).json(updateCategory)
+        res.status(200).json(updateProduct)
     } catch (error) {
         console.log(error)
         res.status(500).json(error)
@@ -38,8 +48,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     try {
         const { id } = req.params
-        await Product.updateMany({ category: id }, { category: null })
-        await Category.findByIdAndDelete(id);
+        await Product.findByIdAndDelete(id);
         res.status(200).json('Deleted');
     } catch (error) {
         console.log(error);
@@ -49,7 +58,7 @@ exports.delete = async (req, res) => {
 
 exports.getAll = async (req, res) => {
     try {
-        const list = await Category.find({}).sort('-createAt')
+        const list = await Product.find({}).sort('-createAt').populate({ path: 'category' }, { path: 'supplier' })
         res.status(200).json(list)
     } catch (error) {
         console.log(error)
@@ -59,21 +68,21 @@ exports.getAll = async (req, res) => {
 
 exports.getOne = async (req, res) => {
     try {
-        const category = await Category.findById(req.params.id)
-        res.status(200).json(category)
+        const product = await Product.findById(req.params.slug).populate({ path: 'category' }, { path: 'supplier' })
+        res.status(200).json(product)
     } catch (error) {
         console.log(error)
         res.status(500).json(error)
     }
 }
 
-exports.getAllProductsByCategory = async (req, res) => {
+exports.getAllCommentByProduct = async (req, res) => {
     try {
-        const category = await Category.findOne({ slug: req.params.categorySlug })
-        const list = await Product.find({ category: category._id }).populate({ path: 'category' }, { path: 'supplier' })
+        const product = await Product.findOne({ slug: req.params.slug })
+        const list = await Comment.find({ product: product }).sort('-createAt').populate({ path: 'prevID' }, { path: 'product' })
         res.status(200).json(list)
     } catch (error) {
         console.log(error)
-        res.status(500).json(error)
+        res.status
     }
 }

@@ -14,9 +14,9 @@ exports.create = async (req, res) => {
         res.status(200).json({
             newRole
         })
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -29,9 +29,9 @@ exports.update = async (req, res) => {
             }
         )
         res.status(200).json(updateRole)
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -41,9 +41,9 @@ exports.delete = async (req, res) => {
         await Employee.updateMany({ role: id }, { role: null })
         await Role.findByIdAndDelete(id);
         res.status(200).json('Deleted');
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
     }
 }
 

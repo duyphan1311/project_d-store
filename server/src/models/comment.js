@@ -13,7 +13,7 @@ const commentSchema = mongoose.Schema({
     },
     prevID: {
         type: Schema.Types.ObjectId,
-        required: true,
+        ref: 'Comment',
         default: null
     },
     product: {

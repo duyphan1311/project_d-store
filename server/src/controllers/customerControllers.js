@@ -23,9 +23,9 @@ exports.login = async (req, res) => {
             token,
             admin
         });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
     }
 }
 
@@ -82,8 +82,8 @@ exports.summary = async (req, res) => {
                 userWithZeroDose: totalUser - (userVaccinated[0] ? userVaccinated[0].user : 0)
             }
         });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
     }
 }

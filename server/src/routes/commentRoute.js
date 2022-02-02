@@ -9,7 +9,6 @@ router.post('/',
 )
 
 router.get('/:id',
-    tokenHandler.verifyToken,
     commentController.getComment
 )
 

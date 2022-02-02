@@ -22,9 +22,9 @@ exports.create = async (req, res) => {
         res.status(200).json({
             newSupplier
         })
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -37,9 +37,9 @@ exports.update = async (req, res) => {
             }
         )
         res.status(200).json(updateSupplier)
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -49,9 +49,9 @@ exports.delete = async (req, res) => {
         await Product.updateMany({ supplier: id }, { supplier: null })
         await Supplier.findByIdAndDelete(id);
         res.status(200).json('Deleted');
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
     }
 }
 

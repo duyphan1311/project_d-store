@@ -18,9 +18,9 @@ exports.create = async (req, res) => {
         res.status(200).json({
             newComment
         })
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -33,9 +33,9 @@ exports.update = async (req, res) => {
             }
         )
         res.status(200).json(updateComment)
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 }
 
@@ -44,15 +44,15 @@ exports.delete = async (req, res) => {
         const { id } = req.params
         await Comment.findByIdAndDelete(id);
         res.status(200).json('Deleted');
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
     }
 }
 
 exports.getComment = async (req, res) => {
     try {
-        const comment = await Comment.findById(req.params.id)
+        const comment = await Comment.findById(req.params.id).populate({ path: 'prevID' }, { path: 'product' })
         res.status(200).json(comment)
     } catch (error) {
         console.log(error)

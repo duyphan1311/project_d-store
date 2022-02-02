@@ -1,29 +1,26 @@
 const express = require('express')
 const router = express.Router()
-const { categoryController } = require('../controllers')
+const { productController } = require('../controllers')
 const tokenHandler = require('../handlers/tokenHandler')
 
 router.post('/',
     tokenHandler.verifyManegerToken,
-    categoryController.create
+    productController.create
 )
 router.put('/:id',
     tokenHandler.verifyManegerToken,
-    categoryController.update
+    productController.update
 )
 router.delete('/:id',
     tokenHandler.verifyManegerToken,
-    categoryController.delete
+    productController.delete
 )
 router.get('/',
-    categoryController.getAll
+    productController.getAll
 )
-router.get('/:id',
-    categoryController.getOne
-)
-
-router.get('/:categorySlug',
-    categoryController.getAllProductsByCategory
+router.get('/:slug',
+    productController.getOne,
+    productController.getAllCommentByProduct
 )
 
 module.exports = router

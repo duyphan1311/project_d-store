@@ -11,4 +11,5 @@ module.exports = {
     orderController: require('./orderController'),
     receiveNoteController: require('./receiveNoteController'),
     orderDetailsController: require('./orderDetailsController'),
+    productController: require('./productController')
 }
