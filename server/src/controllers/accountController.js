@@ -27,9 +27,9 @@ exports.login = async (req, res) => {
             token,
             user
         });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json(error);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
     }
 }
 
@@ -50,8 +50,8 @@ exports.register = async (req, res) => {
         });
         await newCustomer.save();
         res.status(200).json('Đăng ký tài khoản  thành công!')
-    } catch (error) {
-        console.log(error);
+    } catch (err) {
+        console.log(err);
         return false
     }
 }

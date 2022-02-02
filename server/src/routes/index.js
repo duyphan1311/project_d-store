@@ -13,5 +13,6 @@ router.use('/order', require('./orderRoute'))
 router.use('/receive-note', require('./receiveNoteRoute'))
 router.use('/order-details', require('./orderDetailsRoute'))
 router.use('/product', require('./productRoute'))
+router.use('/customer', require('./customerRoute'))
 
 module.exports = router
