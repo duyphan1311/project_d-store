@@ -4,23 +4,23 @@ const { supplierController } = require('../controllers')
 const tokenHandler = require('../handlers/tokenHandler')
 
 router.post('/',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     supplierController.create
 )
 router.put('/:id',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     supplierController.update
 )
 router.delete('/:id',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     supplierController.delete
 )
 router.get('/',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     supplierController.getAll
 )
 router.get('/:id',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     supplierController.getOne
 )
 

@@ -4,15 +4,15 @@ const { productController } = require('../controllers')
 const tokenHandler = require('../handlers/tokenHandler')
 
 router.post('/',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     productController.create
 )
 router.put('/:id',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     productController.update
 )
 router.delete('/:id',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     productController.delete
 )
 router.get('/',

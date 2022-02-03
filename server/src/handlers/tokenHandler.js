@@ -33,7 +33,7 @@ exports.verifyAdminToken = async (req, res, next) => {
     }
 }
 
-exports.verifyManegerToken = async (req, res, next) => {
+exports.verifyManagerToken = async (req, res, next) => {
     const tokenDecoded = tokenDecode(req);
     if (tokenDecoded) {
         const employee = await Employee.findById(tokenDecoded.id)

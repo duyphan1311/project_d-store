@@ -4,15 +4,15 @@ const tokenHandler = require('../handlers/tokenHandler')
 const { discountController } = require('../controllers')
 
 router.post('/',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     discountController.create
 )
 router.put('/:id',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     discountController.update
 )
 router.delete('/:id',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     discountController.delete
 )
 router.get('/',

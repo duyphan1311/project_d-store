@@ -16,8 +16,16 @@ router.get('/',
     customerController.getAll
 )
 router.get('/:id',
-    tokenHandler.verifyAdminToken,
+    tokenHandler.verifyToken,
     customerController.getOne
+)
+router.get('/:customerID/order',
+    tokenHandler.verifyToken,
+    customerController.getAllOrderByCustomer
+)
+router.get('/:customerID/order/:orderID',
+    tokenHandler.verifyToken,
+    customerController.getOneOrderByCustomer
 )
 
 module.exports = router

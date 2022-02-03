@@ -15,5 +15,43 @@ router.post(
         res.status(200).json('Authorized');
     }
 )
+router.put('/:id',
+    tokenHandler.verifyEmployeeToken,
+    employeeController.update
+)
+router.delete('/:id',
+    tokenHandler.verifyAdminToken,
+    employeeController.delete
+)
+router.get('/',
+    tokenHandler.verifyManagerToken,
+    employeeController.getAll
+)
+router.get('/:id',
+    tokenHandler.verifyToken,
+    employeeController.getOne
+)
+router.get('/:employeeID/order',
+    tokenHandler.verifyEmployeeToken,
+    employeeController.getAllOrderByEmployee
+)
+router.get('/:employeeID/order/:orderID',
+    tokenHandler.verifyEmployeeToken,
+    employeeController.getOneOrderByEmployee
+)
+router.get('/:employeeID/receive-note',
+    tokenHandler.verifyEmployeeToken,
+    employeeController.getAllReciveNoteByEmployee
+)
+router.get('/:employeeID/receive-note/:receiveNoteID',
+    tokenHandler.verifyEmployeeToken,
+    employeeController.getOneReciveNoteByEmployee
+)
 
-module.exports = router;
+//Manager routes
+router.get('/summary',
+    tokenHandler.verifyManagerToken,
+    employeeController.summary
+)
+
+module.exports = router

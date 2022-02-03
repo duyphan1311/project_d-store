@@ -50,3 +50,23 @@ exports.getOne = async (req, res) => {
         res.status(500).json(error)
     }
 }
+
+exports.getAllOrderByCustomer = async (req, res) => {
+    try {
+        const list = await Order.find({ customer: req.params.customerID }).populate('customer')
+        res.status(200).json(list)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
+    }
+}
+
+exports.getOneOrderByCustomer = async (req, res) => {
+    try {
+        const order = await Order.find({ customer: req.params.customerID, _id: req.params.orderID }).populate('customer')
+        res.status(200).json(order)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
+    }
+}

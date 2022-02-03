@@ -4,23 +4,23 @@ const { receiveNoteController } = require('../controllers')
 const tokenHandler = require('../handlers/tokenHandler')
 
 router.post('/',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     receiveNoteController.create
 )
 router.put('/:id',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     receiveNoteController.update
 )
 router.delete('/:id',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     receiveNoteController.delete
 )
 router.get('/',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     receiveNoteController.getAll
 )
 router.get('/:id',
-    tokenHandler.verifyManegerToken,
+    tokenHandler.verifyManagerToken,
     receiveNoteController.getOne
 )
 

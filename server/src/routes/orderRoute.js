@@ -16,7 +16,7 @@ router.delete('/:id',
     orderController.delete
 )
 router.get('/',
-    tokenHandler.verifyEmployeeToken,
+    tokenHandler.verifyManagerToken,
     orderController.getAll
 )
 router.get('/:id',
