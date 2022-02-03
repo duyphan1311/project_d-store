@@ -4,12 +4,14 @@ exports.create = async (req, res) => {
     const {
         products,
         discount,
+        totalPrice,
         customer
     } = req.body
     try {
         const newCart = await new Cart({
             products: products,
             discount: discount,
+            totalPrice: totalPrice,
             customer: customer
         })
         await newCart.save();

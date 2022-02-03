@@ -11,6 +11,10 @@ const orderDetailsSchema = mongoose.Schema({
     products: {
         type: Array,
         required: true
+    },
+    totalPrice: {
+        type: Number,
+        required: true
     }
 }, schemaOptions)
 

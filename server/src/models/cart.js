@@ -12,6 +12,10 @@ const cartSchema = mongoose.Schema({
         ref: 'Discount',
         required: true
     },
+    totalPrice: {
+        type: Number,
+        required: true
+    },
     customer: {
         type: Schema.Types.ObjectId,
         ref: 'Customer',

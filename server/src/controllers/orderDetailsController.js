@@ -3,12 +3,14 @@ const { OrderDetails } = require('../models')
 exports.create = async (req, res) => {
     const {
         discount,
-        products
+        products,
+        totalPrice
     } = req.body
     try {
         const newOrderDetails = await new OrderDetails({
             discount: discount,
-            products: products
+            products: products,
+            totalPrice: totalPrice
         })
         await newOrderDetails.save();
         res.status(200).json({
