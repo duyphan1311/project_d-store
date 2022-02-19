@@ -64,7 +64,7 @@ exports.verifyToken = async (req, res, next) => {
     if (tokenDecoded) {
         const employee = await Employee.findById(tokenDecoded.id);
         const customer = await Customer.findById(tokenDecoded.id);
-        if (!employee || !customer) return res.status(403).json('Không tìm thấy tài khoản!');
+        if (!employee && !customer) return res.status(403).json('Không tìm thấy tài khoản!');
         req.employee = employee;
         req.customer = customer;
         next();

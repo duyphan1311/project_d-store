@@ -20,7 +20,7 @@ exports.login = async (req, res) => {
 
         const token = jwt.sign({
             id: user._id
-        }, process.env.TOKEN_SECRET_KEY);
+        }, process.env.TOKEN_SECRET_KEY, { expiresIn: 60 * 60 });
         user.password = undefined;
 
         res.status(200).json({
