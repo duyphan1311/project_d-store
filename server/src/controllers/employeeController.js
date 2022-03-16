@@ -13,6 +13,7 @@ exports.create = async (req, res) => {
             phone: req.body.phone,
             email: req.body.email,
             address: req.body.address,
+            avatar: req.file.path.split('/').slice(length - 2),
             hireDate: moment(req.body.hireDate, "DD/MM/YYYY").toDate(),
             title: req.body.title,
             password: CryptoJs.AES.encrypt(
@@ -33,6 +34,7 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
+        if (req.file) req.body.avatar = req.file.path.split('/').slice(length - 2)
         const updateEmployee = await Employee.findByIdAndUpdate(
             req.params.id,
             {
@@ -62,7 +64,10 @@ exports.delete = async (req, res) => {
 exports.getAll = async (req, res) => {
     try {
         const list = await Employee.find({}).sort('-createAt').populate('role')
-        res.status(200).json(list)
+        const page = parseInt(req.query.page) || 1
+        const result = await pagination.pagination(list, page, 2)
+        if (result == false) return res.status(404).json('Trang không tồn tại')
+        res.status(200).json(result)
     } catch (error) {
         console.log(error)
         res.status(500).json(error)

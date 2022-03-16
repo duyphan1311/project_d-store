@@ -6,10 +6,11 @@ exports.create = async (req, res) => {
         quantity,
         price,
         description,
-        images,
         supplier,
         category
     } = req.body
+
+    const images = req.files.map(image => image.path.split('/').slice(length - 2))
     try {
         const newProduct = await new Product({
             name: name,
@@ -32,6 +33,7 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
+        if (req.files) req.body.images = req.files.map(image => image.path.split('/').slice(length - 2))
         const updateProduct = await Product.findByIdAndUpdate(
             req.params.id,
             {
@@ -59,7 +61,10 @@ exports.delete = async (req, res) => {
 exports.getAll = async (req, res) => {
     try {
         const list = await Product.find({}).sort('-createAt').populate({ path: 'category' }, { path: 'supplier' })
-        res.status(200).json(list)
+        const page = parseInt(req.query.page) || 1
+        const result = await pagination.pagination(list, page, 2)
+        if (result == false) return res.status(404).json('Trang không tồn tại')
+        res.status(200).json(result)
     } catch (error) {
         console.log(error)
         res.status(500).json(error)
@@ -80,7 +85,10 @@ exports.getAllCommentByProduct = async (req, res) => {
     try {
         const product = await Product.findOne({ slug: req.params.slug })
         const list = await Comment.find({ product: product }).sort('-createAt').populate({ path: 'prevID' }, { path: 'product' })
-        res.status(200).json(list)
+        const page = parseInt(req.query.page) || 1
+        const result = await pagination.pagination(list, page, 2)
+        if (result == false) return res.status(404).json('Trang không tồn tại')
+        res.status(200).json(result)
     } catch (error) {
         console.log(error)
         res.status

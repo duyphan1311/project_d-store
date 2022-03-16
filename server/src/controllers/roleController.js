@@ -1,4 +1,5 @@
 const { Role, Employee } = require('../models')
+const pagination = require('../handlers/pagination')
 
 exports.create = async (req, res) => {
     const {
@@ -49,8 +50,11 @@ exports.delete = async (req, res) => {
 
 exports.getAll = async (req, res) => {
     try {
+        const page = parseInt(req.query.page) || 1
         const list = await Role.find({}).sort('-createAt')
-        res.status(200).json(list)
+        const result = await pagination.pagination(list, page, 2)
+        if (result == false) return res.status(404).json('Trang không tồn tại')
+        res.status(200).json(result)
     } catch (error) {
         console.log(error)
         res.status(500).json(error)

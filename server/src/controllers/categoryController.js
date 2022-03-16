@@ -1,10 +1,11 @@
 const { Category, Product } = require('../models')
-
+const pagination = require('../handlers/pagination')
 exports.create = async (req, res) => {
     const {
-        name,
-        image
+        name
     } = req.body
+    const array = req.body.image.split('\\')
+    const image = array[array.length - 1]
     try {
         const newCategory = await new Category({
             name: name,
@@ -50,6 +51,9 @@ exports.delete = async (req, res) => {
 exports.getAll = async (req, res) => {
     try {
         const list = await Category.find({}).sort('-createAt')
+        const page = parseInt(req.query.page) || 1
+        const result = await pagination.pagination(list, page, 2)
+        if (result == false) return res.status(404).json('Trang không tồn tại')
         res.status(200).json(list)
     } catch (error) {
         console.log(error)
@@ -71,7 +75,10 @@ exports.getAllProductsByCategory = async (req, res) => {
     try {
         const category = await Category.findOne({ slug: req.params.categorySlug })
         const list = await Product.find({ category: category._id }).populate({ path: 'category' }, { path: 'supplier' })
-        res.status(200).json(list)
+        const page = parseInt(req.query.page) || 1
+        const result = await pagination.pagination(list, page, 2)
+        if (result == false) return res.status(404).json('Trang không tồn tại')
+        res.status(200).json(result)
     } catch (error) {
         console.log(error)
         res.status(500).json(error)

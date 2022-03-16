@@ -2,6 +2,7 @@ const { Customer, Order, OrderDetails } = require('../models')
 
 exports.update = async (req, res) => {
     try {
+        if (req.file.path) req.body.avatar = req.file.path.split('/').slice(length - 2)
         const updateCustomer = await Customer.findByIdAndUpdate(
             req.params.id,
             {
@@ -34,7 +35,10 @@ exports.delete = async (req, res) => {
 exports.getAll = async (req, res) => {
     try {
         const list = await Customer.find({}).sort('-createAt')
-        res.status(200).json(list)
+        const page = parseInt(req.query.page) || 1
+        const result = await pagination.pagination(list, page, 2)
+        if (result == false) return res.status(404).json('Trang không tồn tại')
+        res.status(200).json(result)
     } catch (error) {
         console.log(error)
         res.status(500).json(error)
@@ -54,7 +58,10 @@ exports.getOne = async (req, res) => {
 exports.getAllOrderByCustomer = async (req, res) => {
     try {
         const list = await Order.find({ customer: req.params.customerID }).populate('customer')
-        res.status(200).json(list)
+        const page = parseInt(req.query.page) || 1
+        const result = await pagination.pagination(list, page, 2)
+        if (result == false) return res.status(404).json('Trang không tồn tại')
+        res.status(200).json(result)
     } catch (error) {
         console.log(error)
         res.status(500).json(error)

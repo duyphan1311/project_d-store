@@ -4,47 +4,38 @@ import { useNavigate } from 'react-router-dom'
 import bgImage from '../assets/images/login-bg.jpg'
 import { Box, Card, FormControl, TextField, Typography, Paper } from '@mui/material'
 import { LoadingButton } from '@mui/lab'
-import authApi from '../api/authApi'
+import categoryApi from '../api/categoryApi'
 
 const Login = () => {
     const navigate = useNavigate()
     const [loginErr, setLoginErr] = useState()
-    const [phone, setPhone] = useState('')
-    const [phoneErr, setPhoneErr] = useState(false)
-    const [password, setPassword] = useState('')
-    const [passwordErr, setPasswordErr] = useState(false)
+    const [name, setName] = useState('')
+    const [nameErr, setNameErr] = useState(false)
+    const [image, setImage] = useState('')
+    const [imageErr, setImageErr] = useState(false)
     const [onSubmit, setOnSubmit] = useState(false)
 
-    useEffect(() => {
-        const checkToken = async () => {
-            const res = await isAuthenticated()
-            if (res) return navigate('/')
-        }
-        checkToken()
-    }, [])
+
 
     const loginSubmit = async () => {
         if (onSubmit) return
         setLoginErr(undefined)
 
         const checkErr = {
-            phone: phone.trim().length === 0,
-            password: password.trim().length === 0
+            name: name.trim().length === 0
         }
-        setPhoneErr(checkErr.phone)
-        setPasswordErr(checkErr.password)
-        if (checkErr.phone || checkErr.password) return
+        setNameErr(checkErr.name)
+        setImageErr(checkErr.image)
+        if (checkErr.name || checkErr.image) return
 
         const params = {
-            phone,
-            password
+            name,
+            image
         }
         setOnSubmit(true)
         try {
-            const res = await authApi.login(params)
-            localStorage.setItem('token', res.token)
-            setOnSubmit(false)
-            navigate('/')
+            const res = await categoryApi.create(params)
+            console.log(res)
         } catch (err) {
             if (err.response.status === 401) {
                 setLoginErr(err.response.data)
@@ -118,21 +109,22 @@ const Login = () => {
                                 borderRadius: '10px'
                             }}>
                             <TextField
-                                label='Phone'
+                                label='Name'
                                 variant='outlined'
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                error={phoneErr}
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                error={nameErr}
                             />
                         </FormControl>
                         <FormControl fullWidth>
                             <TextField
-                                label='Password'
-                                type='password'
+                                label='Image'
                                 variant='outlined'
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                error={passwordErr}
+                                name='image'
+                                value={image}
+                                type='file'
+                                onChange={(e) => setImage(e.target.value)}
+                                error={imageErr}
                             />
                         </FormControl>
                         {
@@ -149,7 +141,7 @@ const Login = () => {
                             sx={{ marginTop: '1rem' }}
                             onClick={loginSubmit}
                         >
-                            Sign in
+                            Create
                         </LoadingButton>
                     </Box>
                 </Card >

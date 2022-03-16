@@ -3,7 +3,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Login, AppLayout } from './pages';
+import { Login, AppLayout, Form } from './pages';
 
 function App() {
     return (
@@ -11,6 +11,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="login" element={<Login />} />
+                    <Route path="form" element={<Form />} />
                     <Route path="" element={<AppLayout />}>
 
                     </Route>
