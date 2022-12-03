@@ -32,7 +32,6 @@ function Checkout(props) {
     const [load, setLoad] = useState(false)
 
 
-    //Hàm này dùng để gọi API và render số sản phẩm
     useEffect(() => {
 
         if (sessionStorage.getItem('id_user')) {
@@ -65,7 +64,6 @@ function Checkout(props) {
 
     }, [])
 
-    //Hàm này dùng để tính tổng tiền carts
     function getTotal(carts) {
         let sub_total = 0
 
@@ -76,8 +74,6 @@ function Checkout(props) {
         setTotal(sub_total)
     }
 
-
-    //Check Validation
     const handlerSubmit = () => {
         if (!fullname) {
             setFullnameError(true)
@@ -139,7 +135,6 @@ function Checkout(props) {
         }
     }
 
-    //Hàm này bắt đầu gửi Email xác nhận đơn hàng
     useEffect(() => {
 
         if (load) {
@@ -166,11 +161,8 @@ function Checkout(props) {
 
             const data = sessionStorage.getItem('id_user')
 
-            // Gửi socket lên server
             socket.emit('send_order', data)
 
-            //Dùng setTimeout delay 3s
-            //Sau 4s nó sẽ thực hiện 
             setTimeout(() => {
                 setSuccess(!success)
                 setLoad(!load)
@@ -274,7 +266,7 @@ function Checkout(props) {
                                                 <div key={value._id}>
                                                     <li className="d-flex align-items-center justify-content-between">
                                                         <strong className="small font-weight-bold">{value.nameProduct}</strong>
-                                                        <span className="text-muted small">${value.priceProduct} x {value.count}</span>
+                                                        <span className="text-muted small">{value.priceProduct}VND x {value.count}</span>
                                                     </li>
                                                     <li className="border-bottom my-2"></li>
                                                 </div>
@@ -282,7 +274,7 @@ function Checkout(props) {
                                         }
                                         <li className="d-flex align-items-center justify-content-between">
                                             <strong className="text-uppercase small font-weight-bold">Total</strong>
-                                            <span>${total}</span>
+                                            <span>{total}VND</span>
                                         </li>
                                     </ul>
                                 </div>

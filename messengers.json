@@ -1,0 +1,205 @@
+[{
+  "_id": {
+    "$oid": "6389ebed8211f5e67335ce4d"
+  },
+  "id_user1": "63898823c0a235b92e66acca",
+  "id_user2": "6389ebec8211f5e67335ce49",
+  "content": [
+    {
+      "id": "0.34997831106021926",
+      "message": "hi",
+      "name": "ADMIN",
+      "category": "send"
+    },
+    {
+      "id": "0.014153597967066833",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "receive"
+    }
+  ],
+  "__v": 2,
+  "createdAt": {
+    "$date": "2022-12-02T12:13:33.086Z"
+  },
+  "updatedAt": {
+    "$date": "2022-12-02T23:42:45.394Z"
+  }
+},{
+  "_id": {
+    "$oid": "6389ebed8211f5e67335ce4e"
+  },
+  "id_user1": "6389ebec8211f5e67335ce49",
+  "id_user2": "63898823c0a235b92e66acca",
+  "content": [
+    {
+      "id": "0.5304576322396826",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "send"
+    },
+    {
+      "id": "0.047343162331451305",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "send"
+    },
+    {
+      "id": "0.295547550376664",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "send"
+    }
+  ],
+  "__v": 3,
+  "createdAt": {
+    "$date": "2022-12-02T12:13:33.087Z"
+  },
+  "updatedAt": {
+    "$date": "2022-12-02T23:42:45.418Z"
+  }
+},{
+  "_id": {
+    "$oid": "638a8e2cd2406bc2c8ab85be"
+  },
+  "id_user1": "63898823c0a235b92e66acca",
+  "id_user2": "638a8e2cd2406bc2c8ab85ba",
+  "content": [
+    {
+      "id": "0.485159794081923",
+      "message": "hi",
+      "name": "ADMIN",
+      "category": "send"
+    },
+    {
+      "id": "0.07150519620543627",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "receive"
+    },
+    {
+      "id": "0.14418843660385372",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "receive"
+    },
+    {
+      "id": "0.9226640151893859",
+      "message": "hi 2",
+      "name": "ADMIN",
+      "category": "send"
+    }
+  ],
+  "__v": 4,
+  "createdAt": {
+    "$date": "2022-12-02T23:45:48.094Z"
+  },
+  "updatedAt": {
+    "$date": "2022-12-03T00:18:53.953Z"
+  }
+},{
+  "_id": {
+    "$oid": "638a8e2cd2406bc2c8ab85bf"
+  },
+  "id_user1": "638a8e2cd2406bc2c8ab85ba",
+  "id_user2": "63898823c0a235b92e66acca",
+  "content": [
+    {
+      "id": "0.31466862695238085",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "send"
+    },
+    {
+      "id": "0.17387491906698815",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "send"
+    },
+    {
+      "id": "0.8576927713325293",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "send"
+    },
+    {
+      "id": "0.5504721135909743",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "send"
+    },
+    {
+      "id": "0.321613616166726",
+      "message": "hi",
+      "name": "ADMIN",
+      "category": "receive"
+    },
+    {
+      "id": "0.9137051194239314",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "send"
+    },
+    {
+      "id": "0.3460787743132161",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "send"
+    },
+    {
+      "id": "0.4831693531437318",
+      "message": "hi 2",
+      "name": "ADMIN",
+      "category": "receive"
+    }
+  ],
+  "__v": 8,
+  "createdAt": {
+    "$date": "2022-12-02T23:45:48.095Z"
+  },
+  "updatedAt": {
+    "$date": "2022-12-03T00:18:53.914Z"
+  }
+},{
+  "_id": {
+    "$oid": "638a99ec5c7e049f5f73723d"
+  },
+  "id_user1": "63898823c0a235b92e66acca",
+  "id_user2": "638a99ec5c7e049f5f73723a",
+  "content": [
+    {
+      "id": "0.4930998242390521",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "receive"
+    }
+  ],
+  "__v": 1,
+  "createdAt": {
+    "$date": "2022-12-03T00:35:56.086Z"
+  },
+  "updatedAt": {
+    "$date": "2022-12-03T00:36:06.202Z"
+  }
+},{
+  "_id": {
+    "$oid": "638a99ec5c7e049f5f73723e"
+  },
+  "id_user1": "638a99ec5c7e049f5f73723a",
+  "id_user2": "63898823c0a235b92e66acca",
+  "content": [
+    {
+      "id": "0.8964667433840567",
+      "message": "hi",
+      "name": "Phan Lê Duy",
+      "category": "send"
+    }
+  ],
+  "__v": 1,
+  "createdAt": {
+    "$date": "2022-12-03T00:35:56.087Z"
+  },
+  "updatedAt": {
+    "$date": "2022-12-03T00:36:06.210Z"
+  }
+}]

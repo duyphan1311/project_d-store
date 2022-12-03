@@ -31,15 +31,11 @@ function Products(props) {
 
     }
 
-    //Tổng số trang
     const [totalPage, setTotalPage] = useState()
 
-    //Hàm này dùng để thay đổi state pagination.page
-    //Nó sẽ truyền xuống Component con và nhận dữ liệu từ Component con truyền lên
     const handlerChangePage = (value) => {
         console.log("Value: ", value)
 
-        //Sau đó set lại cái pagination để gọi chạy làm useEffect gọi lại API pagination
         setPagination({
             page: value,
             count: pagination.count,
@@ -47,9 +43,6 @@ function Products(props) {
             category: pagination.category
         })
     }
-
-    //Gọi hàm useEffect tìm tổng số sản phẩm để tính tổng số trang
-    //Và nó phụ thuộc và state pagination
     useEffect(() => {
 
         const fetchAllData = async () => {
@@ -58,7 +51,6 @@ function Products(props) {
             console.log(response)
 
 
-            //Tính tổng số trang = tổng số sản phẩm / số lượng sản phẩm 1 trang
             const totalPage = Math.ceil(parseInt(response.length) / parseInt(pagination.count))
             console.log(totalPage)
 
@@ -70,7 +62,6 @@ function Products(props) {
 
     }, [pagination, loadAPI])
 
-    //Gọi hàm Pagination
     useEffect(() => {
 
         const fetchData = async () => {
@@ -107,11 +98,10 @@ function Products(props) {
 
         fetchDelete()
 
-        //Sau đó thay đổi state loadAPI và load lại hàm useEffect
         setLoadAPI(true)
 
         alertify.set('notifier', 'position', 'bottom-left');
-        alertify.error('Bạn Đã Xóa Thành Công User: ' + id);
+        alertify.error('Bạn Đã Xóa Thành Công: ' + id);
     }
 
     return (
@@ -191,8 +181,7 @@ function Products(props) {
                 </div>
             </div>
             <footer className="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by <a
-                    href="https://www.facebook.com/KimTien.9920/">Tiền Kim</a>.
+                All Rights Reserved by Adminmart. Designed and Developed by Duy Phan.
             </footer>
         </div>
     );

@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useRef, useState } from 'react';
 
 Search.propTypes = {
     handlerSearch: PropTypes.func
@@ -24,13 +24,12 @@ function Search(props) {
 
         console.log(search)
 
-        if (handlerSearch){
+        if (handlerSearch) {
 
-            //Nếu người dùng đang nhập thì mình clear cái giây đó
-            if (delaySearchTextTimeOut.current){
+            if (delaySearchTextTimeOut.current) {
                 clearTimeout(delaySearchTextTimeOut.current)
             }
-            
+
             delaySearchTextTimeOut.current = setTimeout(() => {
                 handlerSearch(value)
             }, 500)
@@ -40,9 +39,9 @@ function Search(props) {
 
     return (
         <div className="col-lg-4">
-            <input 
-                className="form-control form-control-lg" 
-                type="text" 
+            <input
+                className="form-control form-control-lg"
+                type="text"
                 placeholder="Enter Search Here!"
                 onChange={onChangeText}
                 value={search} />

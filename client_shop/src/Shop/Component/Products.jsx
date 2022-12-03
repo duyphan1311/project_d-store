@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 Products.propTypes = {
@@ -30,7 +30,6 @@ function Products(props) {
 
     return (
         <div className="row">
-            {/* -------------Product----------------- */}
             {
                 products && products.map(value => (
                     <div className="col-lg-4 col-sm-6 Section_Category" key={value._id}>
@@ -46,10 +45,9 @@ function Products(props) {
                                         <li className="list-inline-item m-0 p-0">
                                             <Link className="btn btn-sm btn-dark" to={`/detail/${value._id}`}>
                                                 Add to cart
-                                                            </Link>
+                                            </Link>
                                         </li>
                                         <li className="list-inline-item mr-0">
-                                            {/* Dùng Modal phải có href để nó hiện ra thằng đó và thuộc tính data-toggle="modal" để mở modal*/}
                                             <a className="btn btn-sm btn-outline-dark" href={`#product_${value._id}`} data-toggle="modal">
                                                 <i className="fas fa-expand"></i>
                                             </a>
@@ -58,12 +56,11 @@ function Products(props) {
                                 </div>
                             </div>
                             <h6> <a className="reset-anchor" href="detail.html">{value.name}</a></h6>
-                            <p className="small text-muted">${value.price}</p>
+                            <p className="small text-muted">{value.price}VND</p>
                         </div>
                     </div>
                 ))
             }
-            {/* -------------Product----------------- */}
         </div>
     );
 }

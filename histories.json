@@ -1,0 +1,39 @@
+[{
+  "_id": {
+    "$oid": "638aed370a030bf68fdf9d98"
+  },
+  "idUser": "6389ebec8211f5e67335ce49",
+  "phone": "0907867816",
+  "address": "Số 43/52, đường 3/2, phường Xuân Khánh, quận Ninh Kiều, Cần Thơ",
+  "cart": [
+    {
+      "_id": {
+        "$oid": "638aed140a030bf68fdf9d90"
+      },
+      "idUser": "6389ebec8211f5e67335ce49",
+      "idProduct": "638add55a766ecd9ba9d1ec2",
+      "nameProduct": "Điện thoại Samsung Galaxy S22 Ultra 5G 128GB",
+      "priceProduct": "24990000",
+      "count": 1,
+      "img": "ladal",
+      "__v": 0,
+      "createdAt": {
+        "$date": "2022-12-03T06:30:44.754Z"
+      },
+      "updatedAt": {
+        "$date": "2022-12-03T06:30:44.754Z"
+      }
+    }
+  ],
+  "fullname": "Phan Lê Duy",
+  "total": "24990000",
+  "status": false,
+  "delivery": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2022-12-03T06:31:19.558Z"
+  },
+  "updatedAt": {
+    "$date": "2022-12-03T06:31:19.558Z"
+  }
+}]

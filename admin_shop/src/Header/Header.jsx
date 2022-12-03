@@ -46,7 +46,7 @@ function Header(props) {
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="../assets/images/users/IMG_6225.jpg" alt="user" className="rounded-circle"
+                                <img src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="user" className="rounded-circle"
                                     width="40" />
                                 <span className="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
                                     className="text-dark">ADMIN</span> <i data-feather="chevron-down"

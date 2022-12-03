@@ -11,13 +11,10 @@ function Shop(props) {
     const [products, setProducts] = useState([])
     const [temp, setTemp] = useState([])
 
-    //state dùng để sắp xếp sản phẩm
     const [sort, setSort] = useState('default')
 
-    //Tổng số trang
     const [totalPage, setTotalPage] = useState()
 
-    //Từng trang hiện tại
     const [pagination, setPagination] = useState({
         page: '1',
         count: '9',
@@ -25,20 +22,15 @@ function Shop(props) {
         category: 'all'
     })
 
-    //Hàm nà dùng để lấy value từ component SortProduct truyền lên
     const handlerChangeSort = (value) => {
         console.log("Value: ", value)
 
         setSort(value)
     }
 
-
-    //Hàm này dùng để thay đổi state pagination.page
-    //Nó sẽ truyền xuống Component con và nhận dữ liệu từ Component con truyền lên
     const handlerChangePage = (value) => {
         console.log("Value: ", value)
 
-        //Sau đó set lại cái pagination để gọi chạy làm useEffect gọi lại API pagination
         setPagination({
             page: value,
             count: pagination.count,
@@ -47,8 +39,6 @@ function Shop(props) {
         })
     }
 
-    //Hàm này dùng để thay đổi state pagination.search
-    //Hàm này sẽ truyền xuống Component con và nhận dữ liệu từ Component con truyền lên
     const handlerSearch = (value) => {
         console.log("Value: ", value)
 
@@ -59,8 +49,6 @@ function Shop(props) {
             category: pagination.category
         })
     }
-
-    //Hàm này dùng để thay đổi state pagination.category
     const handlerCategory = (value) => {
         console.log("Value: ", value)
 
@@ -71,17 +59,11 @@ function Shop(props) {
             category: value
         })
     }
-
-    //Gọi hàm useEffect tìm tổng số sản phẩm để tính tổng số trang
-    //Và nó phụ thuộc và state pagination
     useEffect(() => {
 
         const fetchAllData = async () => {
 
             let response
-
-            // Nếu mà category === 'all' thì nó sẽ gọi hàm get tất cả sản phẩm
-            // Ngược lại thì nó sẽ gọi hàm pagination và phân loại sản phẩm
             if (pagination.category === 'all') {
 
                 response = await ProductAPI.getAPI()
@@ -102,8 +84,6 @@ function Shop(props) {
                 response = await ProductAPI.getPagination(newQuery)
                 console.log(response)
             }
-
-            //Tính tổng số trang = tổng số sản phẩm / số lượng sản phẩm 1 trang
             const totalPage = Math.ceil(parseInt(response.length) / parseInt(pagination.count))
             console.log(totalPage)
 
@@ -114,7 +94,6 @@ function Shop(props) {
 
     }, [pagination])
 
-    //Gọi hàm Pagination
     useEffect(() => {
 
         const fetchData = async () => {
@@ -162,7 +141,6 @@ function Shop(props) {
             </section>
 
 
-            {/* -------------Modal Product----------------- */}
             {
                 products && products.map(value => (
                     <div className="modal fade show" id={`product_${value._id}`} key={value._id}>
@@ -176,7 +154,6 @@ function Shop(props) {
                                             <img className="d-none" href={value.img3} />
                                         </div>
                                         <div className="col-lg-6">
-                                            {/* Để tắt modal phải có class="close" và data-dissmiss="modal" và aria-label="Close" */}
                                             <a className="close p-4" type="button" href="#section_product" data-dismiss="modal" aria-label="Close">×</a>
                                             <div className="p-5 my-md-4">
                                                 <ul className="list-inline mb-2">
@@ -187,7 +164,7 @@ function Shop(props) {
                                                     <li className="list-inline-item m-0"><i className="fas fa-star small text-warning"></i></li>
                                                 </ul>
                                                 <h2 className="h4">{value.name}</h2>
-                                                <p className="text-muted">${value.price}</p>
+                                                <p className="text-muted">{value.price}VND</p>
                                                 <p className="text-small mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis.</p>
                                                 <div className="row align-items-stretch mb-4">
                                                     <div className="col-sm-5 pl-sm-0 fix_addwish">
@@ -204,7 +181,6 @@ function Shop(props) {
                     </div>
                 ))
             }
-            {/* -------------Modal Product----------------- */}
 
 
             <section className="py-5">

@@ -7,7 +7,6 @@ module.exports.sendmail = async (req, res) => {
 
     try {
 
-        // Lấy data truyền lên từ form phía client
         const to = req.query.to
         const subject = 'Hóa Đơn Đặt Hàng'
 
@@ -17,7 +16,6 @@ module.exports.sendmail = async (req, res) => {
         const idUser = req.query.idUser
         const status = false
 
-        //Tìm những sản phẩm User đã thêm hàng
         const cartsUser = await Cart.find({ idUser: idUser })
 
         let total = 0
@@ -43,12 +41,10 @@ module.exports.sendmail = async (req, res) => {
         const htmlResult = '<h1>Xin Chào ' + fullname + '</h1>' + '<h3>Phone: ' + phone + '</h3>' + '<h3>Address:' + address + '</h3>' +
             htmlHead + htmlContent + '<h1>Tổng Thanh Toán: ' + total + '$</br>' + '<p>Cảm ơn bạn!</p>'
 
-        // Thực hiện gửi email (to, subject, htmlContent)
         await mailer.sendMail(to, subject, htmlResult)
 
 
 
-        //-----------Xứ Lý Xóa Những Sản Phẩm Trong Bảng Cart và Chuyển Sang Bảng History---------------//
         let carts = []
 
         cartsUser.map(value => {
@@ -65,10 +61,8 @@ module.exports.sendmail = async (req, res) => {
             status: status
         }
 
-        // //Insert data vào Bảng History
         History.insertMany(data)
 
-        // //Xóa những sản phẩm trong Bảng Cart
         Cart.deleteMany({ idUser: idUser }).then(function () {
             res.send("Thanh Cong")
         }).catch(function (error) {
@@ -76,11 +70,7 @@ module.exports.sendmail = async (req, res) => {
         });
 
 
-        // Quá trình gửi email thành công thì gửi về thông báo success cho người dùng
-        // res.send('<h3>Your email has been sent successfully.</h3>')
-
     } catch (error) {
-        // Nếu có lỗi thì log ra để kiểm tra và cũng gửi về client
         console.log(error)
         res.send(error)
     }

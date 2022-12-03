@@ -13,24 +13,18 @@ module.exports.index = async (req, res) => {
 
 module.exports.send = async (req, res) => {
 
-    // Lấy query idProduct
     const idProduct = req.query.idProduct
 
-    // Lấy query idUser
     const idUser = req.query.idUser
 
-    // Lấy query fullname
     const fullname = req.query.fullname
 
-    // Lấy query content
     const content = req.query.content
 
-    // Lấy query star
     const star = parseInt(req.query.star)
 
     let arrayStar = []
 
-    // Tạo array cho star
     for (let i = 0; i < star; i++) {
         arrayStar.push("fas fa-star text-warning")
     }
@@ -41,7 +35,6 @@ module.exports.send = async (req, res) => {
     let star4 = ''
     let star5 = ''
 
-    // Bắt đầu gán vào star
     for (let i = 0; i < arrayStar.length; i++) {
         if (i === 0) {
             star1 = arrayStar[i]

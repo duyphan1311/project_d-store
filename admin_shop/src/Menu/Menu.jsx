@@ -24,22 +24,22 @@ function Menu(props) {
                                 <li className="sidebar-item"><a href="/users" className="sidebar-link"><span
                                     className="hide-menu">
                                     Datatables Users
-                                        </span></a>
+                                </span></a>
                                 </li>
                                 <li className="sidebar-item"><a href="/products" className="sidebar-link"><span className="hide-menu">
                                     Datatables Products
-                                        </span></a>
+                                </span></a>
                                 </li>
                                 <li className="sidebar-item"><a href="/history" className="sidebar-link"><span
                                     className="hide-menu">
                                     Datatables History
-                                        </span></a>
+                                </span></a>
                                 </li>
                             </ul>
                         </li>
 
                         <li className="list-divider"></li>
-                        <li className="nav-small-cap"><span className="hide-menu">Authentication</span></li>
+                        {/* <li className="nav-small-cap"><span className="hide-menu">Authentication</span></li>
 
                         <li className="sidebar-item"> <a className="sidebar-link sidebar-link" href="authentication-login1.html"
                             aria-expanded="false"><i data-feather="lock" className="feather-icon"></i><span
@@ -50,7 +50,7 @@ function Menu(props) {
                             href="authentication-register1.html" aria-expanded="false"><i data-feather="lock"
                                 className="feather-icon"></i><span className="hide-menu">Register
                                 </span></a>
-                        </li>
+                        </li> */}
                     </ul>
                 </nav>
             </div>

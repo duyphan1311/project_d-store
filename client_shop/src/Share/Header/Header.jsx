@@ -14,22 +14,15 @@ function Header(props) {
 
     const dispatch = useDispatch()
 
-    //Sau khi F5 nó sẽ kiểm tra nếu phiên làm việc của Session vẫn còn thì nó sẽ tiếp tục
-    // đưa dữ liệu vào Redux
-    if (sessionStorage.getItem('id_user')){
+    if (sessionStorage.getItem('id_user')) {
         const action = addSession(sessionStorage.getItem('id_user'))
         dispatch(action)
-    }else{
-        //Đưa idTemp vào Redux temp để tạm lưu trữ
+    } else {
         sessionStorage.setItem('id_temp', 'abc999')
         const action = addUser(sessionStorage.getItem('id_temp'))
         dispatch(action)
     }
-
-    //Get IdUser từ redux khi user đã đăng nhập
     var idUser = useSelector(state => state.Session.idUser)
-
-    //Get idtemp từ redux khi user chưa đăng nhập
     var idTemp = useSelector(state => state.Cart.id_user)
 
     console.log(idUser)
@@ -40,11 +33,11 @@ function Header(props) {
     const [nameUser, setNameUser] = useState(false)
 
     useEffect(() => {
-        if (!idUser){
-            setLoginUser(false) 
+        if (!idUser) {
+            setLoginUser(false)
             setNameUser(false)
-        }else{
-            setLoginUser(true) 
+        } else {
+            setLoginUser(true)
             setNameUser(true)
         }
     }, [idUser])
@@ -70,13 +63,13 @@ function Header(props) {
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item" onClick={() => handlerActive('Home')}>
-                            <Link className="nav-link" to={`/`} 
-                            style={active === 'Home' ? { color: '#dcb14a' } : {color: 'black'}} >Home</Link>
+                            <Link className="nav-link" to={`/`}
+                                style={active === 'Home' ? { color: '#dcb14a' } : { color: 'black' }} >Home</Link>
                         </li>
                         <li className="nav-item" onClick={() => handlerActive('Shop')}>
-                            <Link className="nav-link" to={`/shop`} 
-                            style={active === 'Shop' ? { color: '#dcb14a' } : {color: 'black'}} >Shop</Link>
-                        </li>  
+                            <Link className="nav-link" to={`/shop`}
+                                style={active === 'Shop' ? { color: '#dcb14a' } : { color: 'black' }} >Shop</Link>
+                        </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">

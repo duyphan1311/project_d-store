@@ -1,12 +1,12 @@
+import alertify from 'alertifyjs';
+import queryString from 'query-string';
 import React, { useEffect, useState } from 'react';
-import ProductAPI from '../API/ProductAPI';
-import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import alertify from 'alertifyjs'
-import { addCart } from '../Redux/Action/ActionCart';
+import { Link, useParams } from 'react-router-dom';
 import CartAPI from '../API/CartAPI';
-import queryString from 'query-string'
 import CommentAPI from '../API/CommentAPI';
+import ProductAPI from '../API/ProductAPI';
+import { addCart } from '../Redux/Action/ActionCart';
 
 function Detail(props) {
 
@@ -14,13 +14,10 @@ function Detail(props) {
 
     const dispatch = useDispatch()
 
-    //id params cho từng sản phẩm
     const { id } = useParams()
 
-    //id_user được lấy từ redux
     const id_user = useSelector(state => state.Cart.id_user)
 
-    //listCart được lấy từ redux
     const listCart = useSelector(state => state.Cart.listCart)
 
     const [product, setProduct] = useState([])
@@ -29,17 +26,12 @@ function Detail(props) {
 
     const [comment, setComment] = useState('')
 
-    // id_user đã đăng nhập
     const idUser = useSelector(state => state.Session.idUser)
 
-    // Listcomment
     const [list_comment, set_list_comment] = useState([])
 
-    // state này dùng để load lại comment khi user gửi comment lên
     const [load_comment, set_load_comment] = useState(false)
 
-    // Hàm này dùng để lấy dữ liệu comment
-    // Hàm này sẽ chạy lại phụ thuộc vào id Param
     useEffect(() => {
 
         const fetchData = async () => {
@@ -61,26 +53,22 @@ function Detail(props) {
 
     }, [id])
 
-
-    // Hàm thay đổi sao đánh giá
     const onChangeStar = (e) => {
 
         setStar(e.target.value)
-        
+
     }
 
-    // Hàm thay đổi comment
     const onChangeComment = (e) => {
 
         setComment(e.target.value)
 
     }
 
-    // Hàm này dùng để bình luận
     const handlerComment = () => {
 
-        if (idUser === ''){
-            alertify.set('notifier','position', 'bottom-left');
+        if (idUser === '') {
+            alertify.set('notifier', 'position', 'bottom-left');
             alertify.error('Vui Lòng Kiểm Tra Đăng Nhập!');
             return
         }
@@ -94,12 +82,12 @@ function Detail(props) {
                 content: comment,
                 star: star
             }
-    
+
             const query = '?' + queryString.stringify(params)
-    
+
             const response = await CommentAPI.postCommentProduct(query)
             console.log(response)
-    
+
             set_load_comment(true)
 
         }
@@ -110,28 +98,25 @@ function Detail(props) {
 
     }
 
-
-    // Hàm này dùng để load lại dữ liệu comment
-    // Phụ thuộc vào state load_comment
     useEffect(() => {
 
-        if (load_comment){
+        if (load_comment) {
 
             const fetchData = async () => {
 
                 const params = {
                     idProduct: id
                 }
-    
+
                 const query = '?' + queryString.stringify(params)
-    
+
                 const response = await CommentAPI.getCommentProduct(query)
                 console.log(response)
-    
+
                 set_list_comment(response)
-    
+
             }
-    
+
             fetchData()
 
             set_load_comment(false)
@@ -140,7 +125,6 @@ function Detail(props) {
     }, [load_comment])
 
 
-    //Hàm này gọi API và cắt chỉ lấy 4 sản phẩm
     useEffect(() => {
 
         const fetchData = async () => {
@@ -157,20 +141,17 @@ function Detail(props) {
 
     }, [])
 
-    //Phần này là để thay đổi số lượng khi mua sản phẩm
     const [text, setText] = useState(1)
     const onChangeText = (e) => {
         setText(e.target.value)
     }
 
-    //Tăng lên 1 đơn vị
     const upText = () => {
         const value = parseInt(text) + 1
 
         setText(value)
     }
 
-    //Giảm 1 đơn vị
     const downText = () => {
 
         const value = parseInt(text) - 1
@@ -181,7 +162,6 @@ function Detail(props) {
         setText(value)
     }
 
-    //Hàm này để lấy dữ liệu chi tiết sản phẩm
     useEffect(() => {
 
         const fetchData = async () => {
@@ -197,14 +177,12 @@ function Detail(props) {
     }, [id])
 
 
-    //Phần này dùng để xem review hay description
     const [review, setReview] = useState('description')
     const handlerReview = (value) => {
         setReview(value)
     }
 
 
-    //Hàm này là Thêm Sản Phẩm
     const addToCart = () => {
 
         let id_user_cart = ''
@@ -235,9 +213,9 @@ function Detail(props) {
             const fetchPost = async () => {
 
                 const params = {
-                    idUser: id_user_cart, //sessionStorage.getItem('id_user')
-                    idProduct: detail._id, // Lấy idProduct
-                    count: text, // Lấy số lượng
+                    idUser: id_user_cart,
+                    idProduct: detail._id,
+                    count: text,
                 }
 
                 const query = '?' + queryString.stringify(params)
@@ -312,7 +290,7 @@ function Detail(props) {
                             <li className="list-inline-item m-0"><i className="fas fa-star small text-warning"></i></li>
                         </ul>
                         <h1>{detail.name}</h1>
-                        <p className="text-muted lead">${detail.price}</p>
+                        <p className="text-muted lead">{detail.price}VND</p>
                         <p className="text-small mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis.</p>
                         <div className="row align-items-stretch mb-4">
                             <div className="col-sm-5 pr-sm-0">
@@ -331,7 +309,7 @@ function Detail(props) {
                             </div>
                             <a className="btn btn-link text-dark p-1 mb-4" href="#">
                                 <i className="far fa-heart mr-2"></i>Add to wish list
-                        </a>
+                            </a>
                             <br></br>
                             <ul className="list-unstyled small d-inline-block">
                                 <li className="px-3 py-2 mb-1 bg-white"><strong className="text-uppercase">SKU:</strong><span className="ml-2 text-muted">039</span></li>
@@ -356,12 +334,12 @@ function Detail(props) {
                         <span className="mt-2">Star</span>
                     </div>
                     <div>
-                    <a className="btn btn-dark btn-sm btn-block px-0 text-white" 
-                        style={{width: '12rem', }} onClick={handlerComment}>Send</a>
+                        <a className="btn btn-dark btn-sm btn-block px-0 text-white"
+                            style={{ width: '12rem', }} onClick={handlerComment}>Send</a>
                     </div>
 
                 </div>
-                <br/>
+                <br />
                 <ul className="nav nav-tabs border-0">
                     <li className="nav-item">
                         <a
@@ -398,12 +376,12 @@ function Detail(props) {
                                                         <h6 className="mb-0 text-uppercase">{value.fullname}</h6>
                                                         <p className="small text-muted mb-0 text-uppercase">dd/mm/yyyy</p>
                                                         <ul className="list-inline mb-1 text-xs">
-                                                            <li className="list-inline-item m-0"><i className={value.star1}></i></li>            
-                                                            <li className="list-inline-item m-0"><i className={value.star2}></i></li>            
-                                                            <li className="list-inline-item m-0"><i className={value.star3}></i></li>            
-                                                            <li className="list-inline-item m-0"><i className={value.star4}></i></li>            
-                                                            <li className="list-inline-item m-0"><i className={value.star5}></i></li>                    
-                                                         </ul>
+                                                            <li className="list-inline-item m-0"><i className={value.star1}></i></li>
+                                                            <li className="list-inline-item m-0"><i className={value.star2}></i></li>
+                                                            <li className="list-inline-item m-0"><i className={value.star3}></i></li>
+                                                            <li className="list-inline-item m-0"><i className={value.star4}></i></li>
+                                                            <li className="list-inline-item m-0"><i className={value.star5}></i></li>
+                                                        </ul>
                                                         <p className="text-small mb-0 text-muted">{value.content}</p>
                                                     </div>
                                                 </div>

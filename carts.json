@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "638aeea50a030bf68fdf9dae"
+  },
+  "idUser": "6389ebec8211f5e67335ce49",
+  "idProduct": "638adf42a766ecd9ba9d1f0b",
+  "nameProduct": "Điện thoại iPhone 13 Pro Max 256GB ",
+  "priceProduct": "30990000",
+  "count": 1,
+  "img": "ladal",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2022-12-03T06:37:25.182Z"
+  },
+  "updatedAt": {
+    "$date": "2022-12-03T06:37:25.182Z"
+  }
+}]

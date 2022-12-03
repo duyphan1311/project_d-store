@@ -6,8 +6,6 @@ import Image from '../Share/img/Image';
 function Home(props) {
 
     const [products, setProducts] = useState([])
-
-    //Fetch Product
     useEffect(() => {
 
         const fetchData = async () => {
@@ -42,7 +40,6 @@ function Home(props) {
                                                 <img className="d-none" href={value.img3} />
                                             </div>
                                             <div className="col-lg-6">
-                                                {/* Để tắt modal phải có class="close" và data-dissmiss="modal" và aria-label="Close" */}
                                                 <a className="close p-4" type="button" href="#section_product" data-dismiss="modal" aria-label="Close">×</a>
                                                 <div className="p-5 my-md-4">
                                                     <ul className="list-inline mb-2">
@@ -53,7 +50,7 @@ function Home(props) {
                                                         <li className="list-inline-item m-0"><i className="fas fa-star small text-warning"></i></li>
                                                     </ul>
                                                     <h2 className="h4">{value.name}</h2>
-                                                    <p className="text-muted">${value.price}</p>
+                                                    <p className="text-muted">{value.price}VND</p>
                                                     <p className="text-small mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis.</p>
                                                     <div className="row align-items-stretch mb-4">
                                                         <div className="col-sm-5 pl-sm-0 fix_addwish">
@@ -92,13 +89,13 @@ function Home(props) {
                             <div className="col-md-4 mb-4 mb-md-0">
                                 <Link className="category-item" to={'/shop'}>
                                     <img className="img-fluid" src={Image.img1} alt="" />
-                                    <strong className="category-item-title">Clothes</strong>
+                                    <strong className="category-item-title">Laptop</strong>
                                 </Link>
                             </div>
                             <div className="col-md-4 mb-4 mb-md-0">
                                 <Link className="category-item mb-4" to={'/shop'}>
                                     <img className="img-fluid" src={Image.img2} alt="" />
-                                    <strong className="category-item-title">Shoes</strong>
+                                    <strong className="category-item-title">Smartphone</strong>
                                 </Link>
                                 <Link className="category-item" to={'/shop'}>
                                     <img className="img-fluid" src={Image.img3} alt="" />
@@ -108,7 +105,7 @@ function Home(props) {
                             <div className="col-md-4">
                                 <Link className="category-item" to={'/shop'}>
                                     <img className="img-fluid" src={Image.img4} alt="" />
-                                    <strong className="category-item-title">Electronics</strong>
+                                    <strong className="category-item-title">Screen</strong>
                                 </Link>
                             </div>
                         </div>
@@ -137,7 +134,6 @@ function Home(props) {
                                                             </Link>
                                                         </li>
                                                         <li className="list-inline-item mr-0">
-                                                            {/* Dùng Modal phải có href để nó hiện ra thằng đó và thuộc tính data-toggle="modal" để mở modal*/}
                                                             <a className="btn btn-sm btn-outline-dark" href={`#product_${value._id}`} data-toggle="modal">
                                                                 <i className="fas fa-expand"></i>
                                                             </a>
@@ -146,7 +142,7 @@ function Home(props) {
                                                 </div>
                                             </div>
                                             <h6> <a className="reset-anchor" href="detail.html">{value.name}</a></h6>
-                                            <p className="small text-muted">${value.price}</p>
+                                            <p className="small text-muted">{value.price}VND</p>
                                         </div>
                                     </div>
                                 ))

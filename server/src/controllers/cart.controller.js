@@ -1,40 +1,27 @@
 
 const { Cart, Product } = require('../models')
 
-//Hàm tìm những sản phẩm mà user đã thêm
 module.exports.index = async (req, res) => {
 
-    //Lấy idUser từ query
     const idUser = req.query.idUser
-
-    //Tìm những sản phẩm mà user đã thêm
     const carts = await Cart.find({ idUser: idUser })
 
     res.json(carts)
 
 }
 
-//Hàm thêm sản phẩm
 module.exports.addToCart = async (req, res) => {
 
-    //Lấy idUser từ query
     const idUser = req.query.idUser
 
-    //Lấy idProduct từ query
     const idProduct = req.query.idProduct
 
-    //Layas count từ query
     const count = req.query.count
 
-    //Tìm sản phẩm mà user cần mua
     const product = await Product.findOne({ _id: idProduct })
 
-    //Tìm trong giỏ hàng xem thử user đã từng mua sản phẩm đó chưa
     const carts = await Cart.findOne({ idUser: idUser, idProduct: idProduct })
 
-    //Kiểm tra xem User đã từng thêm sản phẩm này chưa
-    //Nếu không tìm thấy thì == null và insert vào
-    //Nếu tìm thấy thì sẽ update số lượng
     if (!carts) {
 
         const dataInsert = {
@@ -62,16 +49,12 @@ module.exports.addToCart = async (req, res) => {
 
 }
 
-//Hàm Xóa Sản Phẩm
 module.exports.deleteToCart = async (req, res) => {
 
-    //Lấy idUSer của user cần xóa
     const idUser = req.query.idUser
 
-    //Lấy idProduct của user cần xóa
     const idProduct = req.query.idProduct
 
-    //Tìm đúng cái sản phẩm mà User đã thêm vào giỏ hàng
     var cart = await Cart.findOne({ idUser: idUser, idProduct: idProduct })
 
     cart.delete()
@@ -80,19 +63,14 @@ module.exports.deleteToCart = async (req, res) => {
 
 }
 
-//Hàm Sửa Sản Phẩm
 module.exports.updateToCart = async (req, res) => {
 
-    //Lấy idUSer của user cần sửa
     const idUser = req.query.idUser
 
-    //Lấy idProduct của user cần sửa
     const idProduct = req.query.idProduct
 
-    //Lấy count của user cần sửa
     const count = req.query.count
 
-    //Tìm đúng cái sản phẩm mà User cần sửa
     var cart = await Cart.findOne({ idUser: idUser, idProduct: idProduct })
 
     cart.count = count

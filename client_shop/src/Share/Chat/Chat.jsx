@@ -12,23 +12,13 @@ socket.on("disconnect", () => {
 });
 
 function Chat(props) {
-
     const [activeChat, setActiveChat] = useState(false)
-
     const [textMessage, setTextMessage] = useState('')
-
     const [message, setMessage] = useState()
-
     const id_admin = '63898823c0a235b92e66acca'
-
-    //Get id_user từ redux khi user đã đăng nhập
     const id_user = useSelector(state => state.Session.idUser)
-
     const [loadMessage, setLoadMessage] = useState('')
-
     const [load, setLoad] = useState(false)
-
-    // Hàm này dùng để mở hộp thoại chat
     const onChat = () => {
 
         setActiveChat(!activeChat)
@@ -40,9 +30,6 @@ function Chat(props) {
         setTextMessage(e.target.value)
 
     }
-
-    // Hàm này là thay đổi state loadMessage phụ thuộc vào redux id_user
-    // Nhầm mục đích để gọi lại hàm useEffect loadmessage
     useEffect(() => {
         if (!id_user) {
             setLoadMessage('')
@@ -55,10 +42,6 @@ function Chat(props) {
     const handlerSend = () => {
 
         console.log(textMessage)
-
-        //Khi gửi tin nhắn thì nó sẽ lấy id của cả 2 người
-        //Với cái key category có value là send
-        //Vì là gửi tin nhắn
         const data = {
             id_user1: id_user,
             id_user2: id_admin,
@@ -67,11 +50,7 @@ function Chat(props) {
             name: sessionStorage.getItem('name_user'),
             category: "send"
         }
-
-        //Sau đó nó emit dữ liệu lên server bằng socket với key send_message và value data
         socket.emit('send_message', data)
-
-        //Tiếp theo nó sẽ postdata lên api đưa dữ liệu vào database
         const postData = async () => {
 
             const query = '?' + queryString.stringify(data)
@@ -79,8 +58,6 @@ function Chat(props) {
             const response = await MessengerAPI.postMessage(query)
 
             console.log(response)
-
-            //Sau đó gọi hàm setLoad để useEffect lấy lại dữ liệu sau khi update
             setLoad(true)
 
         }
@@ -90,8 +67,6 @@ function Chat(props) {
         setTextMessage('')
 
     }
-
-    // Hàm này dùng để load dữ liệu message của user khi user gửi tin nhán
     useEffect(() => {
 
         if (load) {
@@ -119,9 +94,6 @@ function Chat(props) {
 
     }, [load])
 
-
-    // Hàm này dùng để load dữ liệu message của user
-    // Phụ thuộc state loadMessage
     useEffect(() => {
 
         const fetchData = async () => {
@@ -144,15 +116,9 @@ function Chat(props) {
     }, [id_user, loadMessage])
 
 
-    //Hàm này dùng để nhận socket từ server gửi lên
     useEffect(() => {
-
-        //Nhận dữ liệu từ server gửi lên thông qua socket với key receive_message
         socket.on('receive_message', (data) => {
-
-            //Sau đó nó sẽ setLoad gọi lại hàm useEffect lấy lại dữ liệu
             setLoad(true)
-
         })
 
     }, [])

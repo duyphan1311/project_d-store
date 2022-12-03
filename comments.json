@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$oid": "638ac736bc1fe767231e881a"
+  },
+  "idUser": "638a99ec5c7e049f5f73723a",
+  "idProduct": "638a10a7eb9f2a8945536359",
+  "fullname": "Phan Lê Duy",
+  "content": "Tuyet voi",
+  "star1": "fas fa-star text-warning",
+  "star2": "fas fa-star text-warning",
+  "star3": "fas fa-star text-warning",
+  "star4": "fas fa-star text-warning",
+  "star5": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2022-12-03T03:49:10.876Z"
+  },
+  "updatedAt": {
+    "$date": "2022-12-03T03:49:10.876Z"
+  }
+},{
+  "_id": {
+    "$oid": "638aed200a030bf68fdf9d92"
+  },
+  "idUser": "6389ebec8211f5e67335ce49",
+  "idProduct": "638add55a766ecd9ba9d1ec2",
+  "fullname": "Phan Lê Duy",
+  "content": "Tuyet lam",
+  "star1": "fas fa-star text-warning",
+  "star2": "fas fa-star text-warning",
+  "star3": "fas fa-star text-warning",
+  "star4": "fas fa-star text-warning",
+  "star5": "fas fa-star text-warning",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2022-12-03T06:30:56.684Z"
+  },
+  "updatedAt": {
+    "$date": "2022-12-03T06:30:56.684Z"
+  }
+}]

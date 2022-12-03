@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import IndexPage from './IndexPage';
 
 Pagination.propTypes = {
@@ -21,15 +21,13 @@ function Pagination(props) {
     const { page } = pagination
 
     let indexPage = []
-
-    //Tạo ra số nút bấm cho từng trang
-    for (var i = 1; i <= totalPage; i++){
+    for (var i = 1; i <= totalPage; i++) {
         indexPage.push(i)
     }
 
     const onDownPage = (value) => {
-        
-        if (!handlerChangePage){
+
+        if (!handlerChangePage) {
             return
         }
 
@@ -39,8 +37,8 @@ function Pagination(props) {
     }
 
     const onUpPage = (value) => {
-                
-        if (!handlerChangePage){
+
+        if (!handlerChangePage) {
             return
         }
 
@@ -52,18 +50,18 @@ function Pagination(props) {
         <nav aria-label="Page navigation example" className="pt-5">
             <ul className="pagination justify-content-center justify-content-lg-end">
                 <li className="page-item">
-                    <button className="page-link" 
-                        onClick={() => onDownPage(page)} 
-                        disabled={page <= 1 }>
+                    <button className="page-link"
+                        onClick={() => onDownPage(page)}
+                        disabled={page <= 1}>
                         <span>«</span>
                     </button>
                 </li>
-                <IndexPage indexPage={indexPage} handlerChangePage={handlerChangePage} pagination={pagination}/>
+                <IndexPage indexPage={indexPage} handlerChangePage={handlerChangePage} pagination={pagination} />
                 <li className="page-item">
-                    <button className="page-link" 
-                        onClick={() => onUpPage(page)} 
+                    <button className="page-link"
+                        onClick={() => onUpPage(page)}
                         disabled={page >= totalPage}>
-                            <span>»</span>
+                        <span>»</span>
                     </button>
                 </li>
             </ul>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 ListCart.propTypes = {
@@ -26,7 +26,7 @@ function ListCart(props) {
 
     const handlerDelete = (getUser, getProduct) => {
 
-        if (!onDeleteCart){
+        if (!onDeleteCart) {
             return
         }
 
@@ -35,15 +35,14 @@ function ListCart(props) {
 
     const handlerDown = (getIdUser, getIdProduct, getCount) => {
 
-        if (!onUpdateCount){
+        if (!onUpdateCount) {
             return
         }
 
-        if (getCount === 1){
+        if (getCount === 1) {
             return
         }
 
-        //Trước khi trả dữ liệu về component cha thì phải thay đổi biến count
         const updateCount = parseInt(getCount) - 1
 
         onUpdateCount(getIdUser, getIdProduct, updateCount)
@@ -52,11 +51,10 @@ function ListCart(props) {
 
     const handlerUp = (getIdUser, getIdProduct, getCount) => {
 
-        if (!onUpdateCount){
+        if (!onUpdateCount) {
             return
         }
 
-        //Trước khi trả dữ liệu về component cha thì phải thay đổi biến count
         const updateCount = parseInt(getCount) + 1
 
         onUpdateCount(getIdUser, getIdProduct, updateCount)
@@ -94,36 +92,36 @@ function ListCart(props) {
                                         </Link>
                                     </div>
                                 </td>
-                                
+
                                 <td className="align-middle border-0">
-                                    <p className="mb-0 small">${value.priceProduct}</p>
+                                    <p className="mb-0 small">{value.priceProduct}VND</p>
                                 </td>
                                 <td className="align-middle border-0">
-                                        <div className="quantity justify-content-center">
-                                            <button className="dec-btn p-0" 
-                                                style={{ cursor: 'pointer'}}
-                                                onClick={() => handlerDown(value.idUser, value.idProduct, value.count)} >
-                                                <i className="fas fa-caret-left"></i>
-                                            </button>
-                                            <input 
-                                                className="form-control form-control-sm border-0 shadow-0 p-0" 
-                                                type="text" 
-                                                value={value.count} 
-                                                onChange={handlerChangeText}/>
-                                            <button className="inc-btn p-0" 
-                                                style={{ cursor: 'pointer'}}
-                                                onClick={() => handlerUp(value.idUser, value.idProduct, value.count)} >
-                                                <i className="fas fa-caret-right"></i>
-                                            </button>
-                                        </div>
+                                    <div className="quantity justify-content-center">
+                                        <button className="dec-btn p-0"
+                                            style={{ cursor: 'pointer' }}
+                                            onClick={() => handlerDown(value.idUser, value.idProduct, value.count)} >
+                                            <i className="fas fa-caret-left"></i>
+                                        </button>
+                                        <input
+                                            className="form-control form-control-sm border-0 shadow-0 p-0"
+                                            type="text"
+                                            value={value.count}
+                                            onChange={handlerChangeText} />
+                                        <button className="inc-btn p-0"
+                                            style={{ cursor: 'pointer' }}
+                                            onClick={() => handlerUp(value.idUser, value.idProduct, value.count)} >
+                                            <i className="fas fa-caret-right"></i>
+                                        </button>
+                                    </div>
                                 </td>
                                 <td className="align-middle border-0">
-                                    <p className="mb-0 small">${parseInt(value.priceProduct) * parseInt(value.count)}</p>
+                                    <p className="mb-0 small">{parseInt(value.priceProduct) * parseInt(value.count)}VND</p>
                                 </td>
                                 <td className="align-middle border-0">
-                                    <a 
-                                        className="reset-anchor remove_cart" 
-                                        style={{ cursor: 'pointer'}}
+                                    <a
+                                        className="reset-anchor remove_cart"
+                                        style={{ cursor: 'pointer' }}
                                         onClick={() => handlerDelete(value.idUser, value.idProduct)}>
                                         <i className="fas fa-trash-alt small text-muted"></i></a>
                                 </td>

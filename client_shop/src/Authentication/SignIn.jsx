@@ -1,15 +1,14 @@
+import queryString from 'query-string';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+import CartAPI from '../API/CartAPI';
 import UserAPI from '../API/UserAPI';
 import { addSession } from '../Redux/Action/ActionSession';
-import './Auth.css'
-import queryString from 'query-string'
-import CartAPI from '../API/CartAPI';
+import './Auth.css';
 
 function SignIn(props) {
 
-    //listCart được lấy từ redux
     const listCart = useSelector(state => state.Cart.listCart)
 
     const [email, setEmail] = useState('')
@@ -88,7 +87,7 @@ function SignIn(props) {
                             sessionStorage.setItem('id_user', findUser._id)
 
                             sessionStorage.setItem('name_user', findUser.fullname)
-                            
+
 
                             const action = addSession(sessionStorage.getItem('id_user'))
                             dispatch(action)
@@ -104,16 +103,13 @@ function SignIn(props) {
         }
     }
 
-    //Hàm này dùng để đưa hết tất cả carts vào API của user
     useEffect(() => {
         const fetchData = async () => {
 
-            //Lần đầu sẽ không thực hiện insert được vì addCart = ''
             if (checkPush === true) {
 
-                for (let i = 0; i < listCart.length; i++){
+                for (let i = 0; i < listCart.length; i++) {
 
-                    //Nó sẽ lấy idUser và idProduct và count cần thêm để gửi lên server
                     const params = {
                         idUser: sessionStorage.getItem('id_user'),
                         idProduct: listCart[i].idProduct,
@@ -148,7 +144,7 @@ function SignIn(props) {
                 <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
                     <span className="login100-form-title p-b-33">
                         Sign In
-					</span>
+                    </span>
 
                     <div className="d-flex justify-content-center pb-5">
                         {emailRegex && <span className="text-danger">* Incorrect Email Format</span>}
@@ -171,7 +167,7 @@ function SignIn(props) {
                         }
                         <button className="login100-form-btn" onClick={onSubmit}>
                             Sign in
-						</button>
+                        </button>
                     </div>
 
                     <div className="text-center p-t-45 p-b-4">
@@ -179,7 +175,7 @@ function SignIn(props) {
                         &nbsp;
                         <Link to="/signup" className="txt2 hov1">
                             Sign up
-						</Link>
+                        </Link>
                     </div>
                 </div>
             </div>

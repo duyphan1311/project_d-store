@@ -11,10 +11,8 @@ import ListCart from './Component/ListCart';
 
 function Cart(props) {
 
-    //id_user được lấy từ redux
     const id_user = useSelector(state => state.Cart.id_user)
 
-    //listCart được lấy từ redux
     const listCart = useSelector(state => state.Cart.listCart)
 
     const [cart, setCart] = useState([])
@@ -23,17 +21,13 @@ function Cart(props) {
 
     const dispatch = useDispatch()
 
-    //State dùng để Load dữ liệu từ Redux
     const [loadRedux, setLoadRedux] = useState({
         idProduct: '',
         count: ''
     })
 
-    //State dùng để Load dữ liệu từ API
     const [loadAPI, setLoadAPI] = useState(false)
 
-    //Hàm này dùng để Load dữ liệu ở Redux
-    //Khi người dùng chưa đăng nhập
     useEffect(() => {
 
         const fetchDataRedux = () => {
@@ -50,7 +44,6 @@ function Cart(props) {
 
     }, [loadRedux])
 
-    //Hàm này dùng để tính tổng tiền carts
     function getTotal(carts) {
         let sub_total = 0
 
@@ -61,8 +54,6 @@ function Cart(props) {
         setTotal(sub_total)
     }
 
-    //Hàm này dùng để load dữ liệu từ API
-    //Khi người dùng đã đăng nhập
     useEffect(() => {
 
         const fetchData = async () => {
@@ -94,13 +85,11 @@ function Cart(props) {
     }, [loadAPI])
 
 
-    //Hàm này dùng để truyền xuống cho component con xử và trả ngược dữ liệu lại component cha 
     const onDeleteCart = (getUser, getProduct) => {
         console.log("idUser: " + getUser + ", idProduct: " + getProduct)
 
-        if (sessionStorage.getItem('id_user')) { // user đã đăng nhập
+        if (sessionStorage.getItem('id_user')) {
 
-            //Sau khi nhận được dữ liệu ở component con truyền lên thì sẽ gọi API xử lý dữ liệu
             const fetchDelete = async () => {
 
                 const params = {
@@ -117,28 +106,24 @@ function Cart(props) {
 
             fetchDelete()
 
-            //Sau đó thay đổi state loadAPI và load lại hàm useEffect
             setLoadAPI(true)
 
             alertify.set('notifier', 'position', 'bottom-left');
             alertify.error('Bạn Đã Xóa Hàng Thành Công!');
 
-        } else { // user chưa đăng nhập
+        } else {
 
-            //Nếu không có phiên làm việc của Session User thì mình sẽ xử lý với Redux
             const data = {
                 idProduct: getProduct,
                 idUser: getUser,
             }
 
-            //Đưa dữ liệu vào Redux
             const action = deleteCart(data)
             dispatch(action)
 
             alertify.set('notifier', 'position', 'bottom-left');
             alertify.error('Bạn Đã Xóa Hàng Thành Công!');
 
-            //set state loadRedux để nó load lại hàm useEffect để tiếp tục lấy dữ liệu từ redux
             setLoadRedux({
                 idProduct: getProduct,
                 count: ''
@@ -148,13 +133,11 @@ function Cart(props) {
 
     }
 
-    //Hàm này dùng để truyền xuống cho component con xử và trả ngược dữ liệu lại component cha 
     const onUpdateCount = (getUser, getProduct, getCount) => {
         console.log("Count: " + getCount + ", idUser: " + getUser + ", idProduct: " + getProduct)
 
-        if (sessionStorage.getItem('id_user')) { // user đã đăng nhập
+        if (sessionStorage.getItem('id_user')) {
 
-            //Sau khi nhận được dữ liệu ở component con truyền lên thì sẽ gọi API xử lý dữ liệu
             const fetchPut = async () => {
 
                 const params = {
@@ -172,7 +155,6 @@ function Cart(props) {
 
             fetchPut()
 
-            //Sau đó thay đổi state loadAPI và load lại hàm useEffect
             setLoadAPI(true)
 
             console.log("Ban Da Dang Nhap!")
@@ -182,21 +164,18 @@ function Cart(props) {
 
         } else {
 
-            //Nếu không có phiên làm việc của Session User thì mình sẽ xử lý với Redux
             const data = {
                 idProduct: getProduct,
                 idUser: getUser,
                 count: getCount
             }
 
-            //Đưa dữ liệu vào Redux
             const action = updateCart(data)
             dispatch(action)
 
             alertify.set('notifier', 'position', 'bottom-left');
             alertify.success('Bạn Đã Sửa Hàng Thành Công!');
 
-            //set state loadRedux để nó load lại hàm useEffect để tiếp tục lấy dữ liệu từ redux
             setLoadRedux({
                 idProduct: getProduct,
                 count: getCount
@@ -205,7 +184,6 @@ function Cart(props) {
 
     }
 
-    //Hàm này dùng để redirect đến page checkout
     const [redirect, setRedirect] = useState(false)
 
     const onCheckout = () => {
@@ -277,9 +255,9 @@ function Cart(props) {
                             <div className="card-body">
                                 <h5 className="text-uppercase mb-4">Cart total</h5>
                                 <ul className="list-unstyled mb-0">
-                                    <li className="d-flex align-items-center justify-content-between"><strong className="text-uppercase small font-weight-bold">Subtotal</strong><span className="text-muted small">${total}</span></li>
+                                    <li className="d-flex align-items-center justify-content-between"><strong className="text-uppercase small font-weight-bold">Subtotal</strong><span className="text-muted small">{total}VND</span></li>
                                     <li className="border-bottom my-2"></li>
-                                    <li className="d-flex align-items-center justify-content-between mb-4"><strong className="text-uppercase small font-weight-bold">Total</strong><span>${total}</span></li>
+                                    <li className="d-flex align-items-center justify-content-between mb-4"><strong className="text-uppercase small font-weight-bold">Total</strong><span>{total}VND</span></li>
                                     <li>
                                         <form>
                                             <div className="form-group mb-0">
