@@ -32,6 +32,7 @@ const historySchema = mongoose.Schema({
     },
     delivery: {
         type: Boolean,
+        default: false,
         required: true
     }
 }, schemaOptions)

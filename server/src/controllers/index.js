@@ -3,7 +3,7 @@ module.exports = {
     commentController: require('./comment.controller'),
     emailController: require('./email.controller'),
     historyController: require('./history.controller'),
-    messageController: require('./message.controller'),
+    messengerController: require('./messenger.controller'),
     productController: require('./product.controller'),
     userController: require('./user.controller')
 }

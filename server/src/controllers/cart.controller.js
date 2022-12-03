@@ -8,7 +8,7 @@ module.exports.index = async (req, res) => {
     const idUser = req.query.idUser
 
     //Tìm những sản phẩm mà user đã thêm
-    const carts = await Carts.find({ idUser: idUser })
+    const carts = await Cart.find({ idUser: idUser })
 
     res.json(carts)
 
@@ -43,7 +43,7 @@ module.exports.addToCart = async (req, res) => {
             nameProduct: product.name,
             priceProduct: product.price,
             count: count,
-            img: product.img1,
+            img: "ladal",
         }
 
         Cart.insertMany(dataInsert)

@@ -1,15 +1,82 @@
 
 const { Product } = require('../models')
+const cloudinary = require('../handlers/cloudinary')
+const appRoot = require('app-root-path')
 
 //Get All Product
 module.exports.index = async (req, res) => {
 
     const products = await Product.find()
 
-    res.json(products)
+    res.status(200).json(products)
 
 }
+const cloudinaryImageUploadMethod = async file => {
+    return new Promise(resolve => {
+        cloudinary.uploader.upload(file, (err, res) => {
+            if (err) return res.status(500).send("upload image error")
+            resolve({
+                res: res.secure_url
+            })
+        }
+        )
+    })
+}
 
+//Hàm thêm sản phẩm
+module.exports.create = async (req, res) => {
+    const {
+        name,
+        price,
+        img1, img2, img3, img4,
+        category
+    } = req.body
+
+    try {
+        const newProduct = await new Product({
+            name: name,
+            price: price,
+            img1: img1,
+            img2: img2,
+            img3: img3,
+            img4: img4,
+            category: category
+        })
+        await newProduct.save();
+        res.status(200).json({
+            newProduct
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
+    }
+}
+
+module.exports.update = async (req, res) => {
+    try {
+        const updateProduct = await Product.findByIdAndUpdate(
+            req.params.id,
+            {
+                $set: req.body
+            }
+        )
+        res.status(200).json(updateProduct)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
+    }
+}
+
+module.exports.delete = async (req, res) => {
+    try {
+        const { id } = req.params
+        await Product.findByIdAndDelete(id);
+        res.status(200).json('Deleted');
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
 //Get Category Product
 module.exports.category = async (req, res) => {
 
@@ -17,7 +84,7 @@ module.exports.category = async (req, res) => {
 
     const products = await Product.find({ category: category })
 
-    res.json(products)
+    res.status(200).json(products)
 }
 
 //Get Detail Product
@@ -27,7 +94,7 @@ module.exports.detail = async (req, res) => {
 
     const products = await Product.findOne({ _id: id })
 
-    res.json(products)
+    res.status(200).json(products)
 }
 
 //Pagination Phát Triển Thêm Chức năng Search và Phân Loại Sản Phẩm
@@ -62,8 +129,7 @@ module.exports.pagination = async (req, res) => {
 
 
     if (!keyWordSearch) {
-
-        res.json(paginationProducts)
+        res.status(200).json(paginationProducts)
 
     } else {
         var newData = paginationProducts.filter(value => {
@@ -71,9 +137,6 @@ module.exports.pagination = async (req, res) => {
                 value.price.toUpperCase().indexOf(keyWordSearch.toUpperCase()) !== -1 || value.category.toUpperCase().indexOf(keyWordSearch.toUpperCase()) !== -1
         })
 
-        res.json(newData)
+        res.status(200).json(newData)
     }
-
-    res.send("Thanh Cong")
-
 }

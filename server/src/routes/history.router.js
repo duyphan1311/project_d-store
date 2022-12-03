@@ -16,5 +16,6 @@ router.get('/all',
 router.get('/:id',
     historyController.detail
 )
+router.put('/:id', historyController.update)
 
 module.exports = router

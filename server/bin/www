@@ -24,7 +24,14 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+const socketAPI = require('../src/handlers/socketAPI')
 
+socketAPI.io.attach(server, {
+    cors: {
+        origin: '*',
+
+    }
+})
 /**
  * Listen on provided port, on all network interfaces.
  */

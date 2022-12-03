@@ -19,24 +19,19 @@ const commentSchema = mongoose.Schema({
         required: true
     },
     star1: {
-        type: String,
-        required: true
+        type: String
     },
     star2: {
-        type: String,
-        required: true
+        type: String
     },
     star3: {
-        type: Number,
-        required: true
+        type: String
     },
     star4: {
-        type: String,
-        required: true
+        type: String
     },
     star5: {
-        type: String,
-        required: true
+        type: String
     }
 }, schemaOptions)
 
